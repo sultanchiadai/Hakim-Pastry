@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Hakim Pastry - Setiap Gigitan Ada Cerita Baru</title>
+
+  <!-- Tailwind (CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+  <!-- AOS (Animate On Scroll) -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+  <style>
+    :root{
+      --brown-wood: #8b5e3c;
+      --brown-dark: #3e2a1f;
+      --beige: #f3e5d0;
+      --bg: #f9f4ef;
+    }
+    body{ font-family: 'Poppins', sans-serif; background: var(--bg); color: var(--brown-dark); }
+    .touch-anim:active{ transform: scale(0.97); transition: transform 0.12s; }
+    /* thin line under navbar like example */
+    header { border-bottom: 3px solid rgba(139,94,60,0.06); backdrop-filter: blur(4px); }
+    /* whatsapp floating badge */
+    .whatsapp-badge{
+      position: fixed; right: 22px; bottom: 22px;
+      width: 60px; height: 60px; border-radius: 9999px;
+      display:flex; align-items:center; justify-content:center;
+      background:#25D366; color:#fff; z-index:60; box-shadow:0 8px 22px rgba(0,0,0,0.18);
+      transition: transform .12s;
+    }
+    .whatsapp-badge:active{ transform: scale(.96); }
+    /* center nav menu style for large screens */
+    @media (min-width: 768px){
+      nav .nav-center{ justify-self:center; }
+    }
+  </style>
+
+  <script>
+    // Init AOS when DOM ready
+    document.addEventListener('DOMContentLoaded', () => {
+      AOS.init({ duration: 900, once: true, easing: 'ease-out-cubic' });
+    });
+    // Simple scroll-to for anchor links (smooth handled by css but ensure offset for fixed header)
+    function scrollToId(id){
+      const el = document.getElementById(id);
+      if(!el) return;
+      const yOffset = -80; // header height offset
+      const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  </script>
+</head>
+<body class="antialiased">
+
+  <!-- NAVBAR (three-column: logo | center nav | button) -->
+  <header class="fixed w-full z-50 bg-white/90">
+    <div class="max-w-7xl mx-auto px-6">
+      <nav class="grid grid-cols-3 items-center h-20">
+        <!-- logo left -->
+        <div class="flex items-center">
+          <!-- You can replace this text with an image logo -->
+          <a href="#" onclick="scrollToId('home'); return false" class="text-2xl md:text-3xl font-bold" style="color:var(--brown-wood)">
+            Hakim Pastry
+          </a>
+        </div>
+
+        <!-- center menu -->
+        <ul class="hidden md:flex gap-10 nav-center justify-center col-start-2 text-base font-medium">
+          <li><a href="#home" class="hover:text-[var(--brown-wood)] transition" onclick="scrollToId('home'); return false">Beranda</a></li>
+          <li><a href="#about" class="hover:text-[var(--brown-wood)] transition" onclick="scrollToId('about'); return false">Tentang Kami</a></li>
+          <li><a href="#menu" class="hover:text-[var(--brown-wood)] transition" onclick="scrollToId('menu'); return false">Menu</a></li>
+          <li><a href="#galeri" class="hover:text-[var(--brown-wood)] transition" onclick="scrollToId('galeri'); return false">Galeri</a></li>
+          <li><a href="#testimoni" class="hover:text-[var(--brown-wood)] transition" onclick="scrollToId('testimoni'); return false">Testimoni</a></li>
+          <li><a href="#kontak" class="hover:text-[var(--brown-wood)] transition" onclick="scrollToId('kontak'); return false">Kontak</a></li>
+        </ul>
+
+        <!-- reservasi button right -->
+        <div class="flex justify-end">
+          <a href="https://wa.me/628123456789" target="_blank" rel="noopener" class="bg-[var(--brown-wood)] text-white px-4 py-2 md:px-5 md:py-3 rounded-xl shadow hover:brightness-95 transition touch-anim">
+            Reservasi
+          </a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <main class="pt-20">
+    <section id="home" class="h-screen relative flex items-center justify-center text-center bg-cover bg-center" style="background-image:url('https://images.unsplash.com/photo-1509042239860-f550ce710b93');">
+      <div class="absolute inset-0 bg-black/45"></div>
+      <div class="relative z-10 max-w-3xl px-6" data-aos="zoom-in">
+        <h1 class="text-white text-4xl md:text-6xl font-extrabold mb-4">Hakim Pastry</h1>
+        <p class="text-white/90 text-lg md:text-2xl mb-6">Setiap Gigitan Ada Cerita Baru</p>
+        <div class="flex justify-center gap-4">
+          <a href="https://wa.me/628123456789" target="_blank" class="bg-[var(--brown-wood)] text-white px-5 py-3 rounded-full font-medium shadow hover:scale-[1.02] transition touch-anim">Pesan Sekarang</a>
+          <a href="#menu" onclick="scrollToId('menu'); return false" class="bg-white/90 text-[var(--brown-dark)] px-5 py-3 rounded-full font-medium shadow hover:scale-[1.02] transition touch-anim">Lihat Menu</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="py-20 bg-[var(--bg)]">
+      <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
+        <div data-aos="fade-right">
+          <img src="picturerestoran3.jpg" alt="Interior Hakim Pastry" class="rounded-2xl shadow-lg w-full object-cover">
+        </div>
+        <div data-aos="fade-left">
+          <h2 class="text-3xl font-bold mb-4" style="color:var(--brown-wood)">Tentang Kami</h2>
+          <p class="text-gray-700 leading-relaxed">
+            Hakim Pastry hadir sebagai tempat yang menggabungkan kualitas bahan premium, teknik pembuatan yang teliti, dan suasana cozy yang elegan. Kami percaya setiap gigitan bisa jadi cerita baru, hangat, manis, dan berkesan.
+          </p>
+          <ul class="mt-6 space-y-2 text-gray-700">
+            <li>• Bahan premium & segar</li>
+            <li>• Resep dan teknik dipanggang dengan standar tinggi</li>
+            <li>• Suasana cozy & cocok untuk berkumpul</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- MENU -->
+    <section id="menu" class="py-20 bg-[var(--beige)]">
+      <div class="max-w-6xl mx-auto px-6 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-8" data-aos="fade-up" style="color:var(--brown-wood)">Menu Unggulan</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+          <!-- item 1 -->
+          <article class="bg-white rounded-2xl shadow-md overflow-hidden p-5 hover:scale-105 transition touch-anim" data-aos="zoom-in" data-aos-delay="80">
+            <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a" alt="Croissant" class="h-44 w-full object-cover rounded-lg mb-4">
+            <h3 class="font-semibold text-xl mb-1">Butter Croissant</h3>
+            <p class="text-gray-600 mb-2">Rp 18.000 — Lembut, renyah, aroma mentega premium.</p>
+          </article>
+          <!-- item 2 -->
+          <article class="bg-white rounded-2xl shadow-md overflow-hidden p-5 hover:scale-105 transition touch-anim" data-aos="zoom-in" data-aos-delay="160">
+            <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587" alt="Tart" class="h-44 w-full object-cover rounded-lg mb-4">
+            <h3 class="font-semibold text-xl mb-1">Chocolate Tart</h3>
+            <p class="text-gray-600 mb-2">Rp 28.000 — Coklat pekat, tekstur renyah di setiap gigit.</p>
+          </article>
+          <!-- item 3 -->
+          <article class="bg-white rounded-2xl shadow-md overflow-hidden p-5 hover:scale-105 transition touch-anim" data-aos="zoom-in" data-aos-delay="240">
+            <img src="picturestrawberrypuff.jpg" alt="Strawberry Puff" class="h-44 w-full object-cover rounded-lg mb-4">
+            <h3 class="font-semibold text-xl mb-1">Strawberry Puff</h3>
+            <p class="text-gray-600 mb-2">Rp 22.000 — Isian stroberi segar, lapisan pastry berlapis.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="galeri" class="py-20 bg-[var(--bg)]">
+      <div class="max-w-6xl mx-auto px-6 text-center">
+        <h2 class="text-3xl font-bold mb-8" data-aos="fade-up" style="color:var(--brown-wood)">Galeri & Suasana</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+          <img data-aos="zoom-in" src="picturerestoran.jpg" alt="galeri1" class="rounded-xl shadow-lg hover:scale-105 transition touch-anim">
+          <img data-aos="zoom-in" data-aos-delay="120" src="picturerestoran2.jpg" alt="galeri2" class="rounded-xl shadow-lg hover:scale-105 transition touch-anim">
+          <img data-aos="zoom-in" data-aos-delay="120" src="picturerestoran1.jpg" alt="galeri3" class="rounded-xl shadow-lg hover:scale-105 transition touch-anim">
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONI -->
+    <section id="testimoni" class="py-20 bg-[var(--beige)]">
+      <div class="max-w-5xl mx-auto px-6 text-center">
+        <h2 class="text-3xl font-bold mb-8" data-aos="fade-up" style="color:var(--brown-wood)">Apa Kata Pelanggan</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+          <blockquote class="bg-white p-6 rounded-xl shadow-md touch-anim hover:scale-102 transition" data-aos="flip-left">
+            <p class="italic">“Rasa croissant nya luar biasa, teksturnya pas banget!”</p>
+            <cite class="block mt-4 font-semibold">— Lestari</cite>
+          </blockquote>
+          <blockquote class="bg-white p-6 rounded-xl shadow-md touch-anim hover:scale-102 transition" data-aos="flip-left" data-aos-delay="120">
+            <p class="italic">“Tempatnya cozy banget buat nongkrong atau kerja.”</p>
+            <cite class="block mt-4 font-semibold">— Andi</cite>
+          </blockquote>
+          <blockquote class="bg-white p-6 rounded-xl shadow-md touch-anim hover:scale-102 transition" data-aos="flip-left" data-aos-delay="240">
+            <p class="italic">“Pelayanan ramah, pastry nya fresh dari oven!”</p>
+            <cite class="block mt-4 font-semibold">— Rina</cite>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT / LOCATION -->
+    <section id="kontak" class="py-20 bg-[var(--bg)]">
+      <div class="max-w-6xl mx-auto px-6 text-center">
+        <h2 class="text-3xl font-bold mb-4" data-aos="fade-up" style="color:var(--brown-wood)">Kontak & Lokasi</h2>
+        <p class="mb-4">📍 Dharmahusada Indah, Surabaya, Indonesia</p>
+        <p class="mb-6">📞 <a href="https://wa.me/628123456789" class="text-[var(--brown-wood)] font-semibold" target="_blank" rel="noopener">0812-3456-789</a></p>
+
+        <div class="grid md:grid-cols-2 gap-6 items-start">
+          <!-- form simple (ke WA link fallback) -->
+          <div data-aos="fade-right">
+            <div class="bg-white p-6 rounded-xl shadow-md">
+              <h3 class="font-semibold mb-3">Reservasi via WhatsApp</h3>
+              <p class="text-sm text-gray-600 mb-4">Klik tombol di bawah untuk kirim pesan reservasi ke WhatsApp kami.</p>
+              <a href="https://wa.me/628123456789?text=Halo%20Hakim%20Pastry,%20saya%20ingin%20reservasi%20..." target="_blank" class="inline-flex items-center gap-3 bg-[var(--brown-wood)] text-white px-4 py-3 rounded-lg shadow hover:brightness-95 transition touch-anim">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.52 3.48A11.93 11.93 0 0 0 12 0C5.373 0 .02 5.354.02 12c0 2.118.553 4.182 1.6 6.01L0 24l6.12-1.6A11.93 11.93 0 0 0 12 24c6.627 0 12-5.373 12-12 0-3.24-1.26-6.16-3.48-8.52z"/></svg>
+                Kirim Pesan WA
+              </a>
+            </div>
+          </div>
+
+          <!-- maps -->
+          <div data-aos="fade-left">
+            <div class="rounded-xl overflow-hidden shadow-md">
+              <iframe src="https://www.google.com/maps?q=Dharmahusada%20Indah%20Surabaya&output=embed" width="100%" height="320" style="border:0;" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-[var(--brown-dark)] text-white py-8">
+      <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="flex items-center gap-4">
+          <div class="text-lg font-bold" style="color:var(--beige)">Hakim Pastry</div>
+          <div class="text-sm opacity-80">© 2025 Hakim Pastry</div>
+        </div>
+
+        <div class="flex items-center gap-4">
+          <!-- IG badge -->
+          <a href="https://instagram.com/hakimpastry" target="_blank" rel="noopener" aria-label="Instagram Hakim Pastry" class="inline-flex items-center gap-2 bg-white/10 px-3 py-2 rounded-full hover:bg-white/20 transition touch-anim">
+            <img src="https://cdn-icons-png.flaticon.com/512/1384/1384063.png" alt="IG" class="w-5 h-5">
+            <span class="hidden md:inline">@hakimpastry</span>
+          </a>
+          <!-- WA badge -->
+          <a href="https://wa.me/628123456789" target="_blank" rel="noopener" aria-label="WhatsApp Hakim Pastry" class="inline-flex items-center gap-2 bg-white/10 px-3 py-2 rounded-full hover:bg-white/20 transition touch-anim">
+            <img src="https://cdn-icons-png.flaticon.com/512/124/124034.png" alt="WA" class="w-5 h-5">
+            <span class="hidden md:inline">0812-3456-789</span>
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- floating WA badge (always visible) -->
+    <a href="https://wa.me/628123456789" target="_blank" rel="noopener" class="whatsapp-badge" aria-label="Chat ke WhatsApp Hakim Pastry">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" viewBox="0 0 24 24" fill="white"><path d="M20.52 3.48A11.93 11.93 0 0 0 12 0C5.373 0 .02 5.354.02 12c0 2.118.553 4.182 1.6 6.01L0 24l6.12-1.6A11.93 11.93 0 0 0 12 24c6.627 0 12-5.373 12-12 0-3.24-1.26-6.16-3.48-8.52z"/></svg>
+    </a>
+
+  </main>
+
+  <!-- AOS init script -->
+  <script>
+    // Already initialized on DOMContentLoaded above
+  </script>
+
+</body>
+</html>
